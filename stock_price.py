@@ -2,6 +2,12 @@
 # install yfinance by running "pip install yfinance"
 # install pandas by running "pip install pandas"
 
+# version
+# versions are as follows
+# pip 23.2.1
+# yfinance 0.2.37
+# pandas 2.0.3
+
 # As an example, we will download the stock price data of the TOPIX Core 30 stocks from Yahoo Finance.
 # Stock codes comprising TOPIX Core 30
 
@@ -40,6 +46,7 @@
 import yfinance as yf
 import pandas as pd
 
+# enter the stock codes or ticker you want
 stock_codes = [
     "3382.T", "4063.T", "4502.T", "4503.T", "4568.T", "6098.T",
     "6273.T", "6367.T", "6501.T", "6594.T", "6758.T", "6861.T",
@@ -49,12 +56,19 @@ stock_codes = [
 ]
 
 # download data
-# take closing price
-# take monthly data
-data = yf.download(stock_codes, start="2019-01-01", end="2024-02-29", interval="1mo")['Close']
+start_date = "2019-01-01"    # start date
+end_date = "2024-02-29"      # end date
+# if you need hourly, daily or weekly data, change interval to '1h', '1d' or '1wk' respectively.
+interval = "1m"             # monthly data
+# fetch data
+data = yf.download(stock_codes, start=start_date, end=end_date, interval=interval)
+
+# pick closing price up
+data = data["Close"]
 
 # print data for checking
 print(data)
 
 # Write data to CSV file
-data.to_csv('stock_data.csv')
+file_name = "output.csv"
+data.to_csv(file_name)
