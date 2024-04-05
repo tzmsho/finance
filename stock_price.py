@@ -59,7 +59,8 @@ stock_codes = [
 start_date = "2019-01-01"    # start date
 end_date = "2024-02-29"      # end date
 # if you need hourly, daily or weekly data, change interval to '1h', '1d' or '1wk' respectively.
-interval = "1m"             # monthly data
+interval = "1mo"             # monthly data
+
 # fetch data
 data = yf.download(stock_codes, start=start_date, end=end_date, interval=interval)
 
